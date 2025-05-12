@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Artesanías Bobert</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff8f0;
+      color: #444;
+    }
+
+    header {
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      padding: 30px;
+      text-align: center;
+    }
+
+    header img {
+      height: 80px;
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+      color: #4a3f35;
+    }
+
+    nav {
+      background-color: #ff6f61;
+      text-align: center;
+      padding: 15px 0;
+    }
+
+    .tab-button {
+      color: white;
+      text-decoration: none;
+      margin: 0 25px;
+      font-weight: bold;
+      font-size: 1.1em;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .tab-button.active {
+      text-decoration: underline;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      color: #ff6f61;
+    }
+
+    .info {
+      text-align: center;
+      font-size: 1.2em;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .producto {
+      background: #fff;
+      border: 2px solid #ffc9c0;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .producto:hover {
+      transform: scale(1.05);
+    }
+
+    .producto img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .producto h3 {
+      margin: 0;
+      color: #4a3f35;
+    }
+
+    .producto p {
+      margin: 5px 0;
+      color: #888;
+    }
+
+    .producto button {
+      background-color: #ff6f61;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      margin-top: 30px;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+
+    form button {
+      padding: 12px 25px;
+      background-color: #ff6f61;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    footer {
+      background-color: #4a3f35;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    #carritoLista {
+      max-width: 600px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+
+    #carritoLista ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    #carritoLista li {
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .eliminar-btn {
+      margin-left: 10px;
+      background: #ccc;
+      border: none;
+      border-radius: 5px;
+      padding: 3px 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="https://i.ibb.co/WWDPXfnC/logo-bobert.jpg" alt="Logo de Artesanías Bobert">
+    <h1>Artesanías Bobert</h1>
+  </header>
+
+  <nav>
+    <button class="tab-button active" onclick="mostrarTab('inicio')">Inicio</button>
+    <button class="tab-button" onclick="mostrarTab('productos')">Alebrijes</button>
+    <button class="tab-button" onclick="mostrarTab('contacto')">Contacto</button>
+  </nav>
+
+  <section id="inicio" class="tab-content active">
+    <h2>Sobre Nosotros</h2>
+    <p class="info">
+      En <strong>Artesanías Bobert</strong> creamos vibrantes alebrijes artesanales. Cada figura cuenta una historia y está hecha a mano con dedicación, preservando nuestras tradiciones.
+    </p>
+  </section>
+
+  <section id="productos" class="tab-content">
+    <h2>Catálogo de Alebrijes</h2>
+    <div class="productos">
+      <div class="producto">
+        <img src="https://i.ibb.co/VcxzKzkJ/jaguar-mistico.jpg" alt="Jaguar Místico">
+        <h3>Alebrije Jaguar Místico</h3>
+        <p>$450 MXN</p>
+        <button onclick="añadirAlCarrito('Jaguar Místico', 450)">Añadir al carrito</button>
+      </div>
+      <div class="producto">
+        <img src="https://i.ibb.co/9k3sZtRh/aguila-solar.jpg" alt="Águila Solar">
+        <h3>Alebrije Águila Solar</h3>
+        <p>$500 MXN</p>
+        <button onclick="añadirAlCarrito('Águila Solar', 500)">Añadir al carrito</button>
+      </div>
+      <div class="producto">
+        <img src="https://i.ibb.co/1JYwVwJj/mariposa-nocturna.jpg" alt="Mariposa Nocturna">
+        <h3>Alebrije Mariposa Nocturna</h3>
+        <p>$550 MXN</p>
+        <button onclick="añadirAlCarrito('Mariposa Nocturna', 550)">Añadir al carrito</button>
+      </div>
+      <div class="producto">
+        <img src="https://i.ibb.co/JjHj9yvj/venado-sagrado.jpg"  alt="Venado Sagrado"><h3>Venado Sagrado</h3><p>$460 MXN</p><p>Conexión espiritual con la naturaleza.</p><button onclick="añadirAlCarrito('Venado Sagrado', 460)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/G4TxSfL0/serpiente-emplumada.jpg"  alt="Serpiente Emplumada"><h3>Serpiente Emplumada</h3><p>$480 MXN</p><p>Dualidad entre tierra y cielo.</p><button onclick="añadirAlCarrito('Serpiente Emplumada', 480)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/nstG1nYZ/loro-arcoiris.jpg" alt="Loro Arcoíris"><h3>Loro Arcoíris</h3><p>$390 MXN</p><p>Celebración de la alegría y diversidad.</p><button onclick="añadirAlCarrito('Loro Arcoiris', 390)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/hJDjDgwG/tigre-lunar.jpg"  alt="Tigre Lunar"><h3>Tigre Lunar</h3><p>$500 MXN</p><p>Majestuosidad nocturna en cada trazo.</p><button onclick="añadirAlCarrito('Tigre Lunar', 500)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/HTcgKRFt/conejo-estelar.jpg"  alt="Conejo Estelar"><h3>Conejo Estelar</h3><p>$370 MXN</p><p>Guía espiritual en la noche.</p><button onclick="añadirAlCarrito('Conejo Estelar', 370)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/M52FHH9F/buho-sabio.jpg"  alt="Búho Sabio"><h3>Búho Sabio</h3><p>$430 MXN</p><p>Conocimiento ancestral y místico.</p><button onclick="añadirAlCarrito('Buho Sabio', 430)">Añadir al carrito</button>
+      </div>
+
+    <div class="producto"><img src="https://i.ibb.co/rRMYtQ6X/leon-del-viento.jpg"  alt="León del Viento"><h3>León del Viento</h3><p>$520 MXN</p><p>Simboliza el poder y el movimiento.</p><button onclick="añadirAlCarrito('Leon del Viento', 520)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/Y4fw82Bb/tortuga-cosmica.jpg"  alt="Tortuga Cósmica"><h3>Tortuga Cósmica</h3><p>$460 MXN</p><p>Sabiduría universal plasmada en color.</p><button onclick="añadirAlCarrito('Tortuga Cosmica', 460)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/fGTdf4S3/rana-de-fuego.jpg"  alt="Rana de Fuego"><h3>Rana de Fuego</h3><p>$380 MXN</p><p>Expresa energía y transformación.</p><button onclick="añadirAlCarrito('Rana de Fuego', 380)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/yFRfgr5g/gato-nocturno.jpg"  alt="Gato Nocturno"><h3>Gato Nocturno</h3><p>$370 MXN</p><p>Guardián silencioso de los sueños.</p><button onclick="añadirAlCarrito('Gato Nocturno', 370)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/jZ9Nnsqn/zorro-de-cristal.jpg"  alt="Zorro de Cristal"><h3>Zorro de Cristal</h3><p>$450 MXN</p><p>Astucia reflejada en luz pura.</p><button onclick="añadirAlCarrito('Zorro de Cristal', 450)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/2YS3dgNm/arbol-viviente.jpg"  alt="Árbol Viviente"><h3>Árbol Viviente</h3><p>$510 MXN</p><p>Conectado con la tierra y el alma.</p><button onclick="añadirAlCarrito('Arbol Viviente', 510)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/zTJQkkRn/escorpion-estelar.jpg"  alt="Escorpión Estelar"><h3>Escorpión Estelar</h3><p>$400 MXN</p><p>Fuerza oculta en la oscuridad.</p><button onclick="añadirAlCarrito('Escorpion Estelar', 400)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/Wv4y3QvG/pavo-real-celestial.jpg" alt="Pavo Real Celestial"><h3>Pavo Real Celestial</h3><p>$460 MXN</p><p>Orgullo en cada pluma brillante.</p><button onclick="añadirAlCarrito('Pavo Real Celestial', 460)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/LhRv2Dkg/murcielago-lunar.jpg"  alt="Murciélago Lunar"><h3>Murciélago Lunar</h3><p>$390 MXN</p><p>Protector nocturno y silencioso.</p><button onclick="añadirAlCarrito('Murcielago Lunar', 390)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/4RvH8xMr/cebra-arcoiris.jpg" alt="Cebra Arcoíris"><h3>Cebra Arcoíris</h3><p>$470 MXN</p><p>Rayas vibrantes de armonía y vida.</p><button onclick="añadirAlCarrito('Cebra Arcoiris', 470)">Añadir al carrito</button>
+      </div>
+
+    <div class="producto"><img src="https://i.ibb.co/0jbzMY9B/elefante-de-lluvia.jpg" alt="Elefante de Lluvia"><h3>Elefante de Lluvia</h3><p>$510 MXN</p><p>Gotas sagradas en cada pisada.</p><button onclick="añadirAlCarrito('Elefante de Lluvia', 510)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/0pQxK42J/bufalo-dorado.jpg" alt="Búfalo Dorado"><h3>Búfalo Dorado</h3><p>$530 MXN</p><p>Fuerza ancestral y poder terrenal.</p><button onclick="añadirAlCarrito('Bufalo Dorado', 530)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/BH1TmZ3k/delfin-dorardo.jpg" alt="Delfín Solar"><h3>Delfín Solar</h3><p>$400 MXN</p><p>Reflejo de libertad y alegría.</p><button onclick="añadirAlCarrito('Delfin Solar', 400)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/Ngn9HX0y/cebra-nocturna.jpg" alt="Cebra Nocturna"><h3>Cebra Nocturna</h3><p>$470 MXN</p><p>Rayas de armonía en la oscuridad.</p><button onclick="añadirAlCarrito('Cebra Nocturna', 470)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/Kzms775n/gato-de-fuego.jpg"  alt="Gato de Fuego"><h3>Gato de Fuego</h3><p>$420 MXN</p><p>Pasión felina hecha arte.</p><button onclick="añadirAlCarrito('Gato de Fuego', 420)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/HT9xfKy9/llama-solar.jpg"  alt="Llama Solar"><h3>Llama Solar</h3><p>$450 MXN</p><p>Fuego vivo que ilumina el alma.</p><button onclick="añadirAlCarrito('Llama Solar', 450)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/TBB3cv9s/pinguino-del-sur.jpg" alt="Pingüino del Sur"><h3>Pingüino del Sur</h3><p>$390 MXN</p><p>Frialdad elegante en un cuerpo cálido.</p><button onclick="añadirAlCarrito('Pinguino del Sur', 390)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/fBWxNqr/camaleon-prisma.jpg"  alt="Camaleón Prisma"><h3>Camaleón Prisma</h3><p>$440 MXN</p><p>Maestro del cambio y el camuflaje.</p><button onclick="añadirAlCarrito('Camaleón Prisma', 440)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/7dryN0BV/dragon-dorado.jpg"  alt="Dragón Dorado"><h3>Dragón Dorado</h3><p>$560 MXN</p><p>Guardian celestial de la fortuna.</p><button onclick="añadirAlCarrito('Dragón Dorado', 560)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/99rkJF31/tiburon-azul.jpg" alt="Tiburón Azul"><h3>Tiburón Azul</h3><p>$410 MXN</p><p>Agilidad marina convertida en arte.</p><button onclick="añadirAlCarrito('Tiburón Azul', 410)">Añadir al carrito</button>
+      </div>
+
+    <div class="producto"><img src="https://i.ibb.co/k2tWSqQW/caballo-de-viento.jpg" alt="Caballo de Viento"><h3>Caballo de Viento</h3><p>$480 MXN</p><p>Fuerza en movimiento constante.</p><button onclick="añadirAlCarrito('Caballo de Viento', 480)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/KjTK48KG/pez-multiculor.jpg"  alt="Pez Multicolor"><h3>Pez Multicolor</h3><p>$400 MXN</p><p>Riqueza cromática bajo el agua.</p><button onclick="añadirAlCarrito('Pez Multicolor', 400)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/GDJPcD7/mapache-curioso.jpg"  alt="Mapache Curioso"><h3>Mapache Curioso</h3><p>$360 MXN</p><p>Picardía y ternura en un mismo cuerpo.</p><button onclick="añadirAlCarrito('Mapache Curioso', 360)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/B2wFGGV7/oso-polar.jpg"  alt="Oso Polar"><h3>Oso Polar</h3><p>$450 MXN</p><p>Gigante blanco lleno de paz.</p><button onclick="añadirAlCarrito('Oso Polar', 450)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/rRKnr82c/gallo-real.jpg"  alt="Gallo Real"><h3>Gallo Real</h3><p>$390 MXN</p><p>Cantares de colores al amanecer.</p><button onclick="añadirAlCarrito('Gallo Real', 390)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/FLDwzWR2/perro-alado.jpg"  alt="Perro Alado"><h3>Perro Alado</h3><p>$380 MXN</p><p>Lealtad que trasciende dimensiones.</p><button onclick="añadirAlCarrito('Perro Alado', 380)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/Df6JBz5X/mono-viajero.jpg"  alt="Mono Viajero"><h3>Mono Viajero</h3><p>$370 MXN</p><p>Alegría saltarina y sin fronteras.</p><button onclick="añadirAlCarrito('Mono Viajero', 370)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/1JMFh8dw/zorro-lunar.jpg"  alt="Zorro Lunar"><h3>Zorro Lunar</h3><p>$410 MXN</p><p>Espíritu que guía en la noche.</p><button onclick="añadirAlCarrito('Zorro Lunar', 410)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/LhpstZkM/tucan-tropical.jpg"  alt="Tucán Tropical"><h3>Tucán Tropical</h3><p>$390 MXN</p><p>Colores vivos del paraíso selvático.</p><button onclick="añadirAlCarrito('Tucán Tropical', 390)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/Xw6rRDt/pantera-azul.jpg"  alt="Pantera Azul"><h3>Pantera Azul</h3><p>$470 MXN</p><p>Elegancia salvaje en la penumbra.</p><button onclick="añadirAlCarrito('Pantera Azul', 470)">Añadir al carrito</button>
+      </div>
+
+    <div class="producto"><img src="https://i.ibb.co/fGdj11pM/ciervo-celeste.jpg"  alt="Ciervo Celeste"><h3>Ciervo Celeste</h3><p>$460 MXN</p><p>Silencio y sabiduría etérea.</p><button onclick="añadirAlCarrito('Ciervo Celeste', 460)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/35Mw3ZgY/tortuga-marina.jpg" alt="Tortuga Marina"><h3>Tortuga Marina</h3><p>$420 MXN</p><p>Viaje lento pero profundo.</p><button onclick="añadirAlCarrito('Tortuga Celeste', 420)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/Y4ykms43/serpiente-solar.jpg"  alt="Serpiente Solar"><h3>Serpiente Solar</h3><p>$400 MXN</p><p>Energía vital en cada giro.</p><button onclick="añadirAlCarrito('Serpiente Solar', 400)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/tTHYS7FB/gato-del-alba.jpg"  alt="Gato del Alba"><h3>Gato del Alba</h3><p>$380 MXN</p><p>Despierta con la luz del día.</p><button onclick="añadirAlCarrito('Gato del ALba', 380)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/WNLRN64C/murcielago-estelar.jpg" alt="Murciélago Estelar"><h3>Murciélago Estelar</h3><p>$410 MXN</p><p>Vuela entre constelaciones sagradas.</p><button onclick="añadirAlCarrito('Murcielago Estelar', 410)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/xSfWgGjD/cangrejo-de-jade.jpg"  alt="Cangrejo de Jade"><h3>Cangrejo de Jade</h3><p>$400 MXN</p><p>Defensor marino con fuerza ancestral.</p><button onclick="añadirAlCarrito('Cangrejo de Jade', 400)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/XkjkmvTC/mariposa-solar.jpg"  alt="Mariposa Solar"><h3>Mariposa Solar</h3><p>$370 MXN</p><p>Luz y vida en alas de fuego.</p><button onclick="añadirAlCarrito('Mariposa Solar', 370)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/SDjTz0Kt/perico-divino.jpg"  alt="Perico Divino"><h3>Perico Divino</h3><p>$390 MXN</p><p>Sabiduría colorida desde las alturas.</p><button onclick="añadirAlCarrito('Perico Divino', 390)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/23GYyMpy/dragon-estelar.jpg"  alt="Dragón Estelar"><h3>Dragón Estelar</h3><p>$560 MXN</p><p>Poder mágico del firmamento.</p><button onclick="añadirAlCarrito('Dragón Estelar', 560)">Añadir al carrito</button>
+      </div>
+    <div class="producto"><img src="https://i.ibb.co/hJ70SFDv/colibri-de-amor.jpg"  alt="Colibrí de Amor"><h3>Colibrí de Amor</h3><p>$420 MXN</p><p>Pequeño guardián de los sentimientos puros.</p><button onclick="añadirAlCarrito('Colibrí de Amor', 420)">Añadir al carrito</button>
+      </div>
+<div class="producto">
+  <a href="https://imgbb.com/">
+    <img src="https://i.ibb.co/QFDnmb4q/coyote-sabio.jpg" alt="Coyote Sabio" border="0">
+  </a>
+  <h3>Alebrije Coyote Sabio</h3>
+  <p>$480 MXN</p><p>Simboliza la astucia y sabiduría natural.</p><button onclick="añadirAlCarrito('Alebrije Coyote Sabio', 480)">Añadir al carrito</button>
+      </div>
+
+</div>
+
+  </section>
+
+  <section id="contacto" class="tab-content">
+    <h2>Contacto y Pedidos</h2>
+    <p class="info">¿Te gustaría adquirir un alebrije o pedir uno personalizado? ¡Contáctanos!</p>
+
+    <!-- Mostrar carrito -->
+    <div id="carritoLista">
+      <h3>🛒 Tu carrito:</h3>
+      <ul id="listaCarrito"></ul>
+      <p id="totalCarrito"><em>Tu carrito está vacío.</em></p>
+    </div>
+
+    <!-- Formulario -->
+    <form id="formularioContacto" action="https://formspree.io/f/movdvzqd" method="POST">
+      <input type="text" name="nombre" placeholder="Tu nombre" required>
+      <input type="email" name="email" placeholder="Correo electrónico" required>
+      <textarea name="mensaje" rows="5" placeholder="Mensaje o pedido" required></textarea>
+      <input type="hidden" name="carrito" id="carrito">
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Artesanías Bobert - Alebrijes con alma y conciencia ecológica ♻️</p>
+  </footer>
+
+  <script>
+    let carrito = [];
+
+    function añadirAlCarrito(producto, precio) {
+      carrito.push({ producto, precio });
+      alert(`${producto} ha sido añadido al carrito.`);
+      actualizarVistaCarrito();
+    }
+
+    function eliminarDelCarrito(index) {
+      if (index > -1) {
+        carrito.splice(index, 1);
+        actualizarVistaCarrito();
+      }
+    }
+
+    function actualizarVistaCarrito() {
+      const lista = document.getElementById('listaCarrito');
+      const total = document.getElementById('totalCarrito');
+      lista.innerHTML = '';
+
+      let suma = 0;
+      carrito.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `${item.producto} - $${item.precio} MXN 
+          <button class="eliminar-btn" onclick="eliminarDelCarrito(${index})">❌</button>`;
+        lista.appendChild(li);
+        suma += item.precio;
+      });
+
+      total.textContent = carrito.length > 0
+        ? `Total: $${suma} MXN`
+        : 'Tu carrito está vacío.';
+      
+      document.getElementById('carrito').value = JSON.stringify(carrito);
+    }
+
+    function mostrarTab(tab) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
+
+      document.getElementById(tab).classList.add('active');
+      document.querySelector(`[onclick="mostrarTab('${tab}')"]`).classList.add('active');
+
+      if (tab === 'contacto') {
+        actualizarVistaCarrito();
+      }
+    }
+  </script>
+</body>
+</html>
